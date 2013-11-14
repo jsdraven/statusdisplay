@@ -5,8 +5,10 @@
  * Created.......: 11/13/13 10:51am
  * Description...: This is all the functions used within this project.
  */
-require_once('config.php');
+require_once('Protected/config.php');
 
+
+//This is a one stop shop for SQL queries. 
 function DbConnection($query){
 
     $DB_User = constant('dbUser');
@@ -17,4 +19,7 @@ function DbConnection($query){
     $result = mysqli_query($copperrun, $query);
     mysqli_close($copperrun);
     return $result;
+
 }
+
+//We will use this one to cycle through the feeds

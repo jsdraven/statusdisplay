@@ -1,14 +1,31 @@
-Index is pulling 
-	function.php - This is the file with all the functions I create for this project
-	static info to display
-	feed.php - Displays the changing content
+Index.php
+	is pulling 
+		function.php - This is the file with all the functions I create for this project
+		static info to display
+		feed.php - This is called on by the AJAX query. It sends am HTTP header directly to the 
+			feed.php to displays the changing content.
+	requires
+		$body - This is what is needed to display the output html in the proper locations for the staticly displayed info. This is not needed for this project.
 
 functions.php
 	Here I am pulling in the 
 		exchange class
+			Website: http://www.phpclasses.org/package/7106-PHP-Get-calendar-events-from-a-MS-Exchange-server.html
 		config.php - This is where the server spacific static settings will be.
 
 feed.php
-	Through here I will detect all the modules and pull them in. This will supply the global varieables
-	they may need met by the functions or config. This file also allows for auto page refresh, cyclig 
-	through the different moduels.
+	Through here I will detect all the modules and pull them in.
+	This will supply the global varieables	they may need met by the functions or config.
+	This file also allows for auto page refresh, cyclig through the different moduels.
+	I will also need to make the framing dayly info display here so the index will cause it to auto refresh and not a restart of the page.
+
+	Process for cycle. I will be able to use session var I think. Two vars will be needed, timestamp (epoch) and slot (position in module list array). each refresh of feed will trigger the following Module folder count and array population with default sort. a compairison of current epoch to session remember epoch. if time apart is equile or greater than config saved setting.
+
+form.php
+	This will handle the function of form submit routing for the admin side. 
+
+admin.php
+	I will build a menu bar dynamicly baised on folders in Modules with subfolder admin. I will dissmiss template folder.
+
+	upon clicking menu item it will pull up the index.php in the form subfolder through the form.php controller. when the submit is it admin will flag what Module was submited and let form.php route the data to the modules parser.
+

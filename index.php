@@ -7,6 +7,8 @@
  * This file will only act as an information passthrough. I am calling the needed files to make this project run. I will
  * also be checking for all modules.
  */
+require_once 'functions.php';
+$source = 'true';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +26,7 @@
                         document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
                         }
                   }
-                xmlhttp.open("GET","feed.php?feed=<?php if (isset($source)) echo $source;?><?php if (isset($option)) echo '&'.$option;?>",true);
+                xmlhttp.open("GET","feed.php?feed=<?php echo $source;?>",true);
                 xmlhttp.send();
             }
             setInterval("loadXMLDoc();", 1000);
@@ -33,6 +35,6 @@
     </head>
     <body>
 
-        <?php echo $body; ?>
+        <p>Waiting to load all the stuff you know you love.</p>
     </body>
 </html>

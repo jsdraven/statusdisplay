@@ -16,4 +16,11 @@ define('exchange_User', '');
 define('exchange_password', '');
 define('exchange_domain', '');
 define('exchange_calendar', '');
-require_once('ExchangeSrvReadCalendar_class.php');
+require_once('Modules/Exchange/ExchangeSrvReadCalendar_class.php');
+
+//Environment Var
+//cycle rate in second between Modules after pages cycled through
+define('moduleCycleRate', '30');
+// cycle rate inbetween pages within the modules.
+// Example Project list is greater than one page
+define('pageCycleRate', '15');
