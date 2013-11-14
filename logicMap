@@ -1,0 +1,14 @@
+Index is pulling 
+	function.php - This is the file with all the functions I create for this project
+	static info to display
+	feed.php - Displays the changing content
+
+functions.php
+	Here I am pulling in the 
+		exchange class
+		config.php - This is where the server spacific static settings will be.
+
+feed.php
+	Through here I will detect all the modules and pull them in. This will supply the global varieables
+	they may need met by the functions or config. This file also allows for auto page refresh, cyclig 
+	through the different moduels.

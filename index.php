@@ -7,3 +7,32 @@
  * This file will only act as an information passthrough. I am calling the needed files to make this project run. I will
  * also be checking for all modules.
  */
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function loadXMLDoc()
+            {
+                var xmlhttp;
+                xmlhttp=new XMLHttpRequest();
+          
+                xmlhttp.onreadystatechange=function()
+                  {
+                      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                        }
+                  }
+                xmlhttp.open("GET","feed.php?feed=<?php if (isset($source)) echo $source;?><?php if (isset($option)) echo '&'.$option;?>",true);
+                xmlhttp.send();
+            }
+            setInterval("loadXMLDoc();", 1000);
+        </script>
+
+    </head>
+    <body>
+
+        <?php echo $body; ?>
+    </body>
+</html>
