@@ -7,7 +7,13 @@
  * This file will only act as an information passthrough. I am calling the needed files to make this project run. I will
  * also be checking for all modules.
  */
-require_once 'functions.php';
+require 'Protected/functions.php';
+
+if ($_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR']){
+
+	require 'admin/index.php';
+	
+}else{
 $source = 'true';
 ?>
 <!DOCTYPE html>
@@ -38,3 +44,5 @@ $source = 'true';
         <p>Waiting to load all the stuff you know you love.</p>
     </body>
 </html>
+}
+?>

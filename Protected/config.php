@@ -18,7 +18,8 @@ define('exchange_domain', '');
 define('exchange_calendar', '');
 require_once('Modules/Exchange/ExchangeSrvReadCalendar_class.php');
 
-//Environment Var
+/*Environment Var*/
+//Real path to the site EX: "C:\wamp\www\statusdisplay"
 //cycle rate in second between Modules after pages cycled through
 define('moduleCycleRate', '30');
 // cycle rate inbetween pages within the modules.
