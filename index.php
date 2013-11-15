@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Filename......: index.php
  * Author........: Justin Scott
@@ -8,13 +9,22 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
+$_SESSION['test1'] = 5;
+if (strlen(constant('displayIP')) > 0 && constant('displayIP') != $_SERVER['SERVER_ADDR']) {
 
-if ($_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR']){
+    $displayIP = constant('displayIP');
+
+}else{
+
+    $displayIP = $_SERVER['SERVER_ADDR'];
+
+}
+if ($_SERVER['REMOTE_ADDR'] != $displayIP){
 
 	require 'admin/index.php';
 	
 }else{
-$source = 'true';
+$source = 'testFeed';
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +42,7 @@ $source = 'true';
                         document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
                         }
                   }
-                xmlhttp.open("GET","feed.php?feed=<?php echo $source;?>",true);
+                xmlhttp.open("GET","feed.php?feed=testFeed",true);
                 xmlhttp.send();
             }
             setInterval("loadXMLDoc();", 1000);
@@ -40,9 +50,11 @@ $source = 'true';
 
     </head>
     <body>
-
-        <p>Waiting to load all the stuff you know you love.</p>
+        <div id='myDiv'>
+            <p>Waiting to load all the stuff you know you love.</p>
+        </div>
     </body>
 </html>
+<?php
 }
 ?>

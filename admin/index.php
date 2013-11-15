@@ -14,7 +14,7 @@ if (isset($_POST['set'])){
 		$adminModule = 'admin/landing.php';
 	}
 
-$views = '';
+$views = "";
 foreach (scandir('Modules') as $key => $value) {
     # code...
     if (strlen($value) < 3 || $value == 'template' || $value == 'dataPanel') {

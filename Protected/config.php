@@ -5,9 +5,10 @@
 
 
 //MySQL Settings
-define('mysql_UserName', '');
+define('mysql_Host', 'localhost');
+define('mysql_UserName', 'root');
 define('mysql_Password', '');
-define('mysql_DBName', '');
+define('mysql_DBName', 'display');
 
 
 
@@ -25,3 +26,7 @@ define('moduleCycleRate', '30');
 // cycle rate inbetween pages within the modules.
 // Example Project list is greater than one page
 define('pageCycleRate', '15');
+
+//Incase you would like to show the info on a system other than the host.
+//If left blank it will use the default of 127.0.0.1 or localhost.
+define('displayIP', '');

@@ -4,6 +4,9 @@ Index.php
 		static info to display
 		feed.php - This is called on by the AJAX query. It sends am HTTP header directly to the 
 			feed.php to displays the changing content.
+		admin/index.php
+			Main index.php will choose to show you the admin side if you are visiting the
+			site from another computer than its host. By default the viewing the page from the host will display the info, while from any other computer will allow you to edit the info.
 	requires
 		$body - This is what is needed to display the output html in the proper locations for the staticly displayed info. This is not needed for this project.
 
@@ -24,8 +27,13 @@ feed.php
 form.php
 	This will handle the function of form submit routing for the admin side. 
 
-admin.php
+admin/index.php
 	I will build a menu bar dynamicly baised on folders in Modules with subfolder admin. I will dissmiss template folder.
 
-	upon clicking menu item it will pull up the index.php in the form subfolder through the form.php controller. when the submit is it admin will flag what Module was submited and let form.php route the data to the modules parser.
+	upon clicking menu item it will pull up the index.php in the admin subfolder through 
+	the index.php. when the submit is hit admin will flag what Module was submited and let
+	form.php route the data to the modules parser form.php. The form it self is in the view.
+	php. The index.php within the admin folder of a module is handling the db interface
+	(select and submit) along with any other brain power other than processing the humin
+	input data from the form.
 

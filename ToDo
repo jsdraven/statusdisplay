@@ -5,3 +5,4 @@ ToDo
 4) Module Template Documentation and development
 5) create a time tracking method for feed to know when to change source between refreshing
 6) create admin side 
+7) build oncall calendar allow edit to a table layout monthly. plus a form at the top for init setting up with cycle options. The Calendar part will need to allow cancel of person and edit per day/week 
