@@ -1,3 +1,7 @@
 <?php
 
-$body = "<p> Hello World!</p>";
+$body .= <<<HTML
+<p> Hello World!</p>
+
+This is some stuff.
+HTML;

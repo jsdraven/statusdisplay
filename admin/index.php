@@ -29,7 +29,7 @@ foreach (scandir('Modules') as $key => $value) {
 
 //$testing = raceCatArray();
 //print_r($testing);
-    $body .="
+    $body .=<<<HTML
 	<table border=1 >
 		<tr>
 			<td>
@@ -39,7 +39,7 @@ foreach (scandir('Modules') as $key => $value) {
 			</td>
 
 	</table>
-";
+HTML;
 
 require $adminModule;
 require 'view.php';

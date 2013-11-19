@@ -17,8 +17,23 @@ if (!isset($_SESSION['timer'])) {
 	# code...
 	$_SESSION['timer'] = date('U');
 	$_SESSION['feedID'] = 0;
-	echo $_SESSION['feedID'];
+}elseif (isset($_SESSION['timer']) && isset($_SESSION['pageCount'])) {
+	# code...
+	if (!isset($_SESSION['pageTimer'])) {
+		# code...
+		$_SESSION['pageTimer'] = date("U");
+		$_SESSION['pageID'] = 0;
+	}
 }
+$pageCountDown = date("U") - $_SESSION['pageTimer'];
+if ($pageCountDown > ($pageCycle - 1)) {
+	# code...
+}
+if ($_SESSION['pageID'] <= $_SESSION['pageCount']) {
+		# code...
+		$_SESSION['timer'] = date("U");
+		$_SESSION['pageID']++;
+	}
 
 $countDown = date('U') - $_SESSION['timer'];
 

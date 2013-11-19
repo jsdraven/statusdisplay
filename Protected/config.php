@@ -22,7 +22,7 @@ require_once('Modules/Exchange/ExchangeSrvReadCalendar_class.php');
 /*Environment Var*/
 //Real path to the site EX: "C:\wamp\www\statusdisplay"
 //cycle rate in second between Modules after pages cycled through
-define('moduleCycleRate', '30');
+define('moduleCycleRate', '5');
 // cycle rate inbetween pages within the modules.
 // Example Project list is greater than one page
 define('pageCycleRate', '15');
