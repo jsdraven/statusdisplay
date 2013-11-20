@@ -24,4 +24,5 @@ Nulla at lacus non risus tincidunt mollis vulputate a turpis. Pellentesque id so
 EET;
 
 $pages = array($page1, $page2, $page3, $page4, $page5);
-print_r($pages);
+$_SESSION['pageCount'] = 5 -1;
+print_r($pages[$pageID]);

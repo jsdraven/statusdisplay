@@ -12,6 +12,7 @@ require_once 'protected/functions.php';
 
 $pageCycle = constant('pageCycleRate');
 $moduleCycle = constant('moduleCycleRate');
+
 $list = FeedList();
 if (!isset($_SESSION['timer'])) {
 	# code...
@@ -28,13 +29,19 @@ if (!isset($_SESSION['timer'])) {
 $pageCountDown = date("U") - $_SESSION['pageTimer'];
 if ($pageCountDown > ($pageCycle - 1)) {
 	# code...
-}
-if ($_SESSION['pageID'] <= $_SESSION['pageCount']) {
+	$_SESSION['timer'] = date("U") - ($moduleCycle + 1);
+	$_SESSION['pageTimer'] = date("U");
+
+
+}elseif ($_SESSION['pageID'] <= ($_SESSION['pageCount'] - 1)) {
+	# code...
 		# code...
 		$_SESSION['timer'] = date("U");
 		$_SESSION['pageID']++;
-	}
 
+}
+print_r($_SESSION);
+echo "<br />$pageCountDown";
 $countDown = date('U') - $_SESSION['timer'];
 
 if ($countDown > ($moduleCycle - 1)) {
