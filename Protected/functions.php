@@ -79,23 +79,25 @@ function RotationTimer($feedList, $pages = NULL){
     switch ($_SESSION['case']) {
         case 'pages':
             # code...
-            $pTimeSample = date("U") - $pTimer;
-
+            $pTimeSample = date("U") - $_SESSION['pTimer'];
+            echo $pTimeSample;
             if ($_SESSION['pageID'] === NULL) {
                 # code...
                 $_SESSION['pageID'] = 0;
+                $_SESSION['pTimer'] = date("U");
             }elseif ($pTimeSample > ($pageCycle - 1) && $_SESSION['pageID'] < $pages) {
                 # code...
                 $_SESSION['pageID']++;
+                $_SESSION['pTimer'] = date("U");
             }elseif ($pTimeSample > ($pageCycle - 1) && $_SESSION['pageID'] >= $pages) {
                 # code...
                 $newFeed = $_SESSION['feedID'] + 1;
-                $_SESSION['pageID'] = NULL;
+                
 
                     if (array_key_exists($newFeed, $feedList)) {
                         # code...
                         $_SESSION['feedID'] = $newFeed;
-                        
+                            
 
                     }else{
                         
@@ -113,7 +115,7 @@ function RotationTimer($feedList, $pages = NULL){
         case "none":
             # code...
 
-            $mTimeSample = date("U") - $mTimer;
+            $mTimeSample = date("U") - $_SESSION['mTimer'];
             echo $mTimeSample;
             if ($mTimeSample > ($moduleCycle - 1)) {
                 # code...
@@ -121,6 +123,7 @@ function RotationTimer($feedList, $pages = NULL){
                 if (array_key_exists($newFeed, $feedList)) {
                     # code...
                     $_SESSION['feedID'] = $newFeed;
+                    $_SESSION['mTimer'] = date("U");
                 }else{
                     session_destroy();
                 }

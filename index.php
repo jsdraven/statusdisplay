@@ -10,6 +10,12 @@
  */
 require 'Protected/functions.php';
 
+if (isset($_POST['reset'])) {
+    # code...
+    session_destroy();
+}
+
+
 if (strlen(constant('displayIP')) > 0 && constant('displayIP') != $_SERVER['SERVER_ADDR']) {
 
     $displayIP = constant('displayIP');
@@ -50,6 +56,9 @@ $source = 'testFeed';
 
     </head>
     <body>
+    <form action='' method="POST">
+        <input type="submit" name="reset" value="Reset" />
+        </form>
         <div id='myDiv'>
             <p>Waiting to load all the stuff you know you love.</p>
         </div>

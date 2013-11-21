@@ -25,4 +25,10 @@ EET;
 
 $pagesList = array($page1, $page2, $page3, $page4, $page5);
 $pages = 5 -1;
-print_r($pagesList[$_SESSION['pageID']]);
+if (!isset($_SESSION['pageID'])) {
+	# code...
+	$pageID = 0;
+}else{
+	$pageID = $_SESSION['pageID'];
+}
+print_r($pagesList[$pageID]);

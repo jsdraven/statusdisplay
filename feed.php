@@ -13,14 +13,22 @@ require_once 'protected/functions.php';
 $pageCycle = constant('pageCycleRate');
 $moduleCycle = constant('moduleCycleRate');
 print_r($_SESSION);
-echo "<br />".date("U")."<br />";
+echo "<br />";
+
 $list = FeedList();
 $pages = NULL;
+
+if (!isset($_SESSION['feedID'])) {
+	# code...
+	$feedID = 0;
+}else{
+	$feedID = $_SESSION['feedID'];
+}
 
 // If there is an HTTP request for "feed" then we start the clock and feed cycle.
 if (isset($_GET['feed'])) {
 	# code...
-	$path = 'Modules/'.$list[$_SESSION['feedID']];
+	$path = 'Modules/'.$list[$feedID];
 	if (is_dir($path) && file_exists($path.'/index.php')) {
 	        require $path.'/index.php';
 	    }
