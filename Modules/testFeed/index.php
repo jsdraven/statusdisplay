@@ -23,6 +23,6 @@ $page5 = <<<EET
 Nulla at lacus non risus tincidunt mollis vulputate a turpis. Pellentesque id sodales nisl. Praesent felis orci, posuere at ipsum non, interdum tempus arcu. Maecenas eu egestas mauris. Quisque tincidunt urna ac sollicitudin dapibus. Ut vel rhoncus lorem, a adipiscing felis. Sed purus felis, mollis quis arcu a, scelerisque commodo diam. Ut pharetra ipsum ante, quis tempor tellus consectetur vel.
 EET;
 
-$pages = array($page1, $page2, $page3, $page4, $page5);
-$_SESSION['pageCount'] = 5 -1;
-print_r($pages[$pageID]);
+$pagesList = array($page1, $page2, $page3, $page4, $page5);
+$pages = 5 -1;
+print_r($pagesList[$_SESSION['pageID']]);

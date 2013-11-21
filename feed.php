@@ -12,54 +12,10 @@ require_once 'protected/functions.php';
 
 $pageCycle = constant('pageCycleRate');
 $moduleCycle = constant('moduleCycleRate');
-
-$list = FeedList();
-if (!isset($_SESSION['timer'])) {
-	# code...
-	$_SESSION['timer'] = date('U');
-	$_SESSION['feedID'] = 0;
-}elseif (isset($_SESSION['timer']) && isset($_SESSION['pageCount'])) {
-	# code...
-	if (!isset($_SESSION['pageTimer'])) {
-		# code...
-		$_SESSION['pageTimer'] = date("U");
-		$_SESSION['pageID'] = 0;
-	}
-}
-$pageCountDown = date("U") - $_SESSION['pageTimer'];
-if ($pageCountDown > ($pageCycle - 1)) {
-	# code...
-	$_SESSION['timer'] = date("U") - ($moduleCycle + 1);
-	$_SESSION['pageTimer'] = date("U");
-
-
-}elseif ($_SESSION['pageID'] <= ($_SESSION['pageCount'] - 1)) {
-	# code...
-		# code...
-		$_SESSION['timer'] = date("U");
-		$_SESSION['pageID']++;
-
-}
 print_r($_SESSION);
-echo "<br />$pageCountDown";
-$countDown = date('U') - $_SESSION['timer'];
-
-if ($countDown > ($moduleCycle - 1)) {
-	# code...
-	$idSample = $_SESSION['feedID'] + 1;
-	if (array_key_exists($idSample, $list)) {
-		# code...
-		$_SESSION['feedID'] = $idSample;
-		
-
-	}else{
-		
-		$_SESSION['feedID'] = 0;
-	}
-	$_SESSION['timer'] = date('U');
-
-}
-
+echo "<br />".date("U")."<br />";
+$list = FeedList();
+$pages = NULL;
 
 // If there is an HTTP request for "feed" then we start the clock and feed cycle.
 if (isset($_GET['feed'])) {
@@ -69,3 +25,4 @@ if (isset($_GET['feed'])) {
 	        require $path.'/index.php';
 	    }
 }
+RotationTimer($list, $pages);

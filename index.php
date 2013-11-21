@@ -9,7 +9,7 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
-$_SESSION['test1'] = 5;
+
 if (strlen(constant('displayIP')) > 0 && constant('displayIP') != $_SERVER['SERVER_ADDR']) {
 
     $displayIP = constant('displayIP');

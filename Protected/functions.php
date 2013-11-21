@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 //testing session usage
 
 
@@ -42,4 +41,91 @@ function FeedList(){
     }
 }
 return $list;
+}
+
+function RotationTimer($feedList, $pages = NULL){
+
+    $pageCycle = constant('pageCycleRate');
+    $moduleCycle = constant('moduleCycleRate');
+
+    
+    if (!isset($_SESSION['mTimer'])) {
+        # code...
+        $_SESSION['mTimer'] = date("U");
+    }
+    if (!isset($_SESSION['pTimer'])) {
+        # code...
+        $_SESSION['pTimer'] = date("U");
+    }
+
+
+    if (!isset($_SESSION['feedID'])) {
+        # code...
+        $_SESSION['feedID'] = 0;
+        $mTimer = date("U");
+        $pTimer = date("U");
+    }
+
+    if ($pages != NULL) {
+
+        $_SESSION['case'] = 'pages';
+       
+    }else {
+        # code...
+        $_SESSION['case'] = 'none';
+        $_SESSION['pageID'] = NULL;
+    }
+
+    switch ($_SESSION['case']) {
+        case 'pages':
+            # code...
+            $pTimeSample = date("U") - $pTimer;
+
+            if ($_SESSION['pageID'] === NULL) {
+                # code...
+                $_SESSION['pageID'] = 0;
+            }elseif ($pTimeSample > ($pageCycle - 1) && $_SESSION['pageID'] < $pages) {
+                # code...
+                $_SESSION['pageID']++;
+            }elseif ($pTimeSample > ($pageCycle - 1) && $_SESSION['pageID'] >= $pages) {
+                # code...
+                $newFeed = $_SESSION['feedID'] + 1;
+                $_SESSION['pageID'] = NULL;
+
+                    if (array_key_exists($newFeed, $feedList)) {
+                        # code...
+                        $_SESSION['feedID'] = $newFeed;
+                        
+
+                    }else{
+                        
+                        session_destroy();
+                    }
+            }
+
+
+
+
+
+
+            break;
+        
+        case "none":
+            # code...
+
+            $mTimeSample = date("U") - $mTimer;
+            echo $mTimeSample;
+            if ($mTimeSample > ($moduleCycle - 1)) {
+                # code...
+                $newFeed = $_SESSION['feedID'] + 1;
+                if (array_key_exists($newFeed, $feedList)) {
+                    # code...
+                    $_SESSION['feedID'] = $newFeed;
+                }else{
+                    session_destroy();
+                }
+            }
+
+            break;
+    }
 }
