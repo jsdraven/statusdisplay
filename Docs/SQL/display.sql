@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 18, 2013 at 05:04 PM
+-- Generation Time: Nov 25, 2013 at 07:07 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -25,14 +25,15 @@ USE `display`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `projects`
+-- Table structure for table `jobs`
 --
 
-CREATE TABLE IF NOT EXISTS `projects` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(35) NOT NULL,
-  `Note` varchar(120) NOT NULL,
-  `Owner` varchar(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `jobs` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `name` varchar(12) NOT NULL,
+  `title` varchar(36) NOT NULL,
+  `startDate` varchar(10) NOT NULL,
+  `endDate` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
