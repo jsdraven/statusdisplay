@@ -8,6 +8,8 @@ if (isset($_GET['formOp'])) {
 $choice = 0;
 }
 
+
+
 if (isset($_POST['submit'])) {
 	# code...
 	require "form.php";
