@@ -13,11 +13,10 @@ define('mysql_DBName', 'display');
 
 
 //Exchange Usser Info
-define('exchange_User', '');
-define('exchange_password', '');
-define('exchange_domain', '');
-define('exchange_calendar', '');
-require_once('Modules/Exchange/ExchangeSrvReadCalendar_class.php');
+define('exchange_User', 'ittemp');
+define('exchange_password', 'Flarflovin43');
+define('exchange_domain', 'ffdairy');
+define('exchange_calendar', 'ittemp@crystalcreamery.com');
 
 /*Environment Var*/
 //Real path to the site EX: "C:\wamp\www\statusdisplay"

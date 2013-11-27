@@ -1,12 +1,26 @@
 <?php
+$errors = "";
+if (isset($error)) {
+	# code...
+	foreach ($error as $key => $value) {
+		# code...
+		$errors .= $value."<br />";
+	}
+}
 $body .=<<<HTML
+<p>$errors</p>
 <form action='' method='POST'>
 <input type="hidden" name="set" value="testFeed" />
 <table border="0">
 <tr>
 <td>
 <lable for='name'>Name:</lable>
-$name
+<input type="text" name="name" id="name" />
+-- or --
+<select name="nameO" id="name">
+<option value="0">Select</option>
+$options
+</select>
 </td>
 </tr>
 <tr>
