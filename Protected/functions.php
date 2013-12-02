@@ -10,7 +10,7 @@ session_start();
  * Description...: This is all the functions used within this project.
  */
 require_once('Protected/config.php');
-
+require_once('Plugins/php-ews/EWSType.php');
 
 //This is a one stop shop for SQL queries. 
 function DbConnection($query){
