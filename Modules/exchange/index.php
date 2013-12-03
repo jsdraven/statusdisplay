@@ -17,15 +17,8 @@ $Sample = date("U");
 $startDate = date("m/d/Y", ($Sample - 1209600));
 $endDate = date("m/d/Y", ($Sample + 1209600));
 $date = date("m/d/Y", $Sample);
-/*
-$obj = new ExchangeSrvReadCalendar($exDomain, $calenLoc, $userName, $password);
-$obj->setDateTimeStart($startDate); // Start Date
-$obj->setDateTimeEnd($endDate);   // End Date
 
-echo "Exchange Feed Here startDate = $startDate and endDate = $endDate";
-*/
-
-$ews = new ExchangeWebServices($exDomain, $userName, $password, "VERSION_2010");
+$ews = new ExchangeWebServices($exDomain, $userName, $password, ExchangeWebServices::VERSION_2010);
 
 $request = new EWSType_FindItemType();
 $request->Traversal = EWSType_ItemQueryTraversalType::SHALLOW;
@@ -43,3 +36,5 @@ $request->ParentFolderIds->DistinguishedFolderId =
         new EWSType_DistinguishedFolderIdType();
 $request->ParentFolderIds->DistinguishedFolderId->Id =
         EWSType_DistinguishedFolderIdNameType::CALENDAR;
+
+        print_r($request->ParentFolderIds->DistinguishedFolderId->Id);

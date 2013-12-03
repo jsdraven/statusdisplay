@@ -13,7 +13,7 @@ define('mysql_DBName', 'display');
 
 
 //Exchange Usser Info
-define('exchange_User', 'ittemp');
+define('exchange_User', 'ittemp@ffdairy.com');
 define('exchange_password', 'Flarflovin43');
 define('exchange_domain', 'ffdairy');
 define('exchange_calendar', 'ittemp@crystalcreamery.com');
