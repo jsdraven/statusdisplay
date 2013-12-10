@@ -18,23 +18,36 @@ $startDate = date("m/d/Y", ($Sample - 1209600));
 $endDate = date("m/d/Y", ($Sample + 1209600));
 $date = date("m/d/Y", $Sample);
 
-$ews = new ExchangeWebServices($exDomain, $userName, $password, ExchangeWebServices::VERSION_2010);
-
+$today = Date("Y-m-d");
+$host = 'https://webmail.fosterdairyfarms.com/ews';
+$username = 'ittemp@fosterdairyfarms.com';
+$password = 'Flarflovin43';
+$localTZ = 'America/Los_Angeles';
+$daysahead = '7'; // Today Only
+$EWScalendar = 'ittemp@fosterdairyfarms.com';
+$ews = new ExchangeWebServices ($host, $username, $password);
 $request = new EWSType_FindItemType();
 $request->Traversal = EWSType_ItemQueryTraversalType::SHALLOW;
-
 $request->ItemShape = new EWSType_ItemResponseShapeType();
-$request->ItemShape->BaseShape =
-        EWSType_DefaultShapeNamesType::DEFAULT_PROPERTIES;
-
+$request->ItemShape->BaseShape = EWSType_DefaultShapeNamesType::DEFAULT_PROPERTIES;
 $request->CalendarView = new EWSType_CalendarViewType();
-$request->CalendarView->StartDate = date('c', strtotime($startDate.' -00'));
-$request->CalendarView->EndDate = date('c', strtotime($endDate.' -00'));
-
+$request->CalendarView->StartDate = date ('c',strtotime("$today"));
+$request->CalendarView->EndDate = date ('c',strtotime("$today + $daysahead days"));
 $request->ParentFolderIds = new EWSType_NonEmptyArrayOfBaseFolderIdsType();
-$request->ParentFolderIds->DistinguishedFolderId =
-        new EWSType_DistinguishedFolderIdType();
-$request->ParentFolderIds->DistinguishedFolderId->Id =
-        EWSType_DistinguishedFolderIdNameType::CALENDAR;
-
-        print_r($request->ParentFolderIds->DistinguishedFolderId->Id);
+$request->ParentFolderIds->DistinguishedFolderId = new EWSType_DistinguishedFolderIdType();
+$request->ParentFolderIds->DistinguishedFolderId->Id = EWSType_DistinguishedFolderIdNameType::CALENDAR;
+$mailBox = new EWSType_EmailAddressType();
+$mailBox->EmailAddress = "$EWScalendar";
+$request->ParentFolderIds->DistinguishedFolderId->Mailbox = $mailBox;
+$response = $ews->FindItem($request);
+$TotalItemCount = $response->ResponseMessages->FindItemResponseMessage->RootFolder->TotalItemsInView;
+// LOOP through the Event Data and Parse each item
+/*for ( $ItemID = 0; $ItemID < $TotalItemCount; $ItemID++) {
+//--do something with item data--
+$subject = $response->ResponseMessages->FindItemResponseMessage->RootFolder->Items->CalendarItem[$ItemID]->Subject;
+}*/
+echo '<!--';
+echo 'Raw Data Captured<br><pre>';
+print_r($response);
+echo '</pre> ';
+echo '-->';

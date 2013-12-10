@@ -9,8 +9,8 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
-
-if (isset($_POST['reset'])) {
+require 'Modules/Exchange/index.php';
+/*if (isset($_POST['reset'])) {
     # code...
     session_destroy();
 }
@@ -65,5 +65,5 @@ $source = 'testFeed';
     </body>
 </html>
 <?php
-}
+}*/
 ?>

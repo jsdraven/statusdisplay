@@ -13,12 +13,13 @@ $basePath = 'Plugins/php-ews/';
 require_once('Protected/config.php');
 require_once($basePath.'EWSType.php');
 require_once($basePath.'ExchangeWebServices.php');
+require_once($basePath.'EWS_Exception.php');
 
 spl_autoload_register(
         function ($class) {
             $class = explode('_', $class);
             $basePath = 'Plugins/php-ews/';
-            if ($class[0] == 'EWSType'){
+            if ($class[0] == 'EWSType' || $class[0] == 'NTLMSoapClient'){
                 $classPath = $basePath.$class[0].'/'.$class[1].'.php';
                 require_once ($classPath);
             }
