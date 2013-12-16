@@ -19,7 +19,7 @@ $endDate = date("m/d/Y", ($Sample + 1209600));
 $date = date("m/d/Y", $Sample);
 
 $today = Date("Y-m-d");
-$host = 'https://webmail.fosterdairyfarms.com/ews';
+$host = 'https://webmail.fosterdairyfarms.com/EWS/Exchange.asmx';
 $username = 'ittemp@fosterdairyfarms.com';
 $password = 'Flarflovin43';
 $localTZ = 'America/Los_Angeles';

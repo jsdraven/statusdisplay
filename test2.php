@@ -14,6 +14,8 @@ class NTLMSoapClient extends SoapClient {
 			);  
 			$this->__last_request_headers = $headers;
 			$ch = curl_init($location);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_POST, true );
@@ -21,6 +23,14 @@ class NTLMSoapClient extends SoapClient {
 			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 			curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_NTLM);
 			curl_setopt($ch, CURLOPT_USERPWD, $this->user.':'.$this->password);
+			// For debugging purposes
+			// return transfer data as a result
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			// read headers
+			curl_setopt($ch, CURLOPT_HEADER, 1);
+			// show request headers, will display all the outgoing info, including fields
+			curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
 			$response = curl_exec($ch);
 			return $response;
 		}   
@@ -133,6 +143,10 @@ class NTLMStream {
 		protected $password = 'Flarflovin43';
 	}
 
+	class ExchangeNTLMSoapClient extends NTLMSoapClient {
+		protected $user = 'ittemp@fosterdairyfarms.com';
+		protected $password = 'Flarflovin43';
+	}
 
 
 	stream_wrapper_unregister('https');
@@ -142,9 +156,39 @@ class NTLMStream {
 	
 	/* Do something with the web service connection */
 
+/*echo "<pre>";
+print_r($client->__getTypes());
+echo "</pre>";*/
 
-print_r($client->__getFunctions());
 
+/*	stream_wrapper_restore('https');
+$FindFolder->Traversal = "Shallow";
+	$FindFolder->FolderShape->BaseShape = "Default";
+	$FindFolder->ParentFolderIds->DistinguishedFolderId->Id = "root";
+	$result = $client->FindFolder($FindFolder);
+	$folders = $result->ResponseMessages->FindFolderResponseMessage->RootFolder->Folders->Folder;
+	foreach($folders as $folder) {
+		echo $folder->DisplayName."n";
+	}
+*/
 
+$data = curl_exec($ch);
+$errors = curl_error($ch);
+// get info about the transfer, for debugging purposes
+$details = curl_getinfo($ch); 
 
-	stream_wrapper_restore('https');
+curl_close($ch);
+
+// Displaying debugging info
+var_dump($data);
+var_dump($errors);
+var_dump($details);	
+
+$FindItem->Traversal = "Shallow";
+	$FindItem->ItemShape->BaseShape = "AllProperties";
+	$FindItem->ParentFolderIds->DistinguishedFolderId->Id = "calendar";
+	$FindItem->CalendarView->StartDate = "2008-12-01T00:00:00Z";
+	$FindItem->CalendarView->EndDate = "2008-12-31T00:00:00Z";
+	$result = $client->FindItem($FindItem);
+	$calendaritems = $result->ResponseMessages->FindItemResponseMessage->RootFolder->Items->CalendarItem;
+	print_r($calendaritems);
