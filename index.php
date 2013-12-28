@@ -9,7 +9,7 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
-require 'Modules/Exchange/index.php';
+require 'Modules/Projects/index.php';
 /*if (isset($_POST['reset'])) {
     # code...
     session_destroy();

@@ -1,0 +1,60 @@
+<?php
+
+
+//develop list of active projects
+$sql = "SELECT DISTINCT uName FROM projects WHERE status = 'Active'";
+
+$names = DbConnection($sql);
+
+$projects = array();
+foreach ($names as $key => $value) {
+	# code...
+	$name = $value['uName'];
+	$sql = "SELECT * FROM projects WHERE uName = '$name' AND status = 'Active'";
+	$results = DbConnection($sql);
+	$projectsCount = '';
+	$uNameSample = '';
+	while ($row = mysqli_fetch_object($results)) {
+		# code...]
+		$name = $row->uName;
+
+		$projects[$name][] = <<<FORM
+		<form action='' method='POST'>
+		<input type="hidden" name='set' value="Projects" />
+		<input type="hidden" name='part' value="adjust" />
+		<input type='hidden' name="id" value="$row->id" />
+		$row->pName
+		&nbsp;
+		$row->pStartDate
+		&nbsp;
+		$row->pEndDate
+		&nbsp;
+		<input type="submit" name="action" value="Edit" />
+		&nbsp;
+		<input type="submit" name="action" value="Delete" />
+		&nbsp;
+		<input type="submit" name="action" value="Complete" />
+		</form>
+FORM;
+
+	}
+	$options.=<<<HTML
+
+<option value="$name">$name</option>
+		
+
+HTML;
+}
+
+print_r($projects);
+if (isset($_POST['submit']) || isset($_POST['action'])) {
+	# code...
+	require "form.php";
+}
+
+
+
+
+
+
+require "view.php";
