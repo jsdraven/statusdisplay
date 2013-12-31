@@ -19,26 +19,34 @@ foreach ($names as $key => $value) {
 		$name = $row->uName;
 
 		$projects[$name][] = <<<FORM
+		<td>
 		<form action='' method='POST'>
 		<input type="hidden" name='set' value="Projects" />
 		<input type="hidden" name='part' value="adjust" />
 		<input type='hidden' name="id" value="$row->id" />
 		$row->pName
-		&nbsp;
+		</td>
+		<td>
 		$row->pStartDate
-		&nbsp;
+		</td>
+		<td>
 		$row->pEndDate
-		&nbsp;
+		</td>
+		<td>
+		<details>
+		<summary>Actions</summary>
 		<input type="submit" name="action" value="Edit" />
 		&nbsp;
 		<input type="submit" name="action" value="Delete" />
 		&nbsp;
 		<input type="submit" name="action" value="Complete" />
-		</form>
+		</details>
+		</td>
+		</tr>
 FORM;
 
 	}
-	$options.=<<<HTML
+	$options =<<<HTML
 
 <option value="$name">$name</option>
 		
@@ -46,15 +54,11 @@ FORM;
 HTML;
 }
 
-print_r($projects);
+
 if (isset($_POST['submit']) || isset($_POST['action'])) {
 	# code...
 	require "form.php";
 }
-
-
-
-
 
 
 require "view.php";

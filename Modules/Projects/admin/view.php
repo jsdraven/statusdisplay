@@ -25,19 +25,21 @@ switch ($part) {
 				break;
 			case 'Edit':
 				# code...
+			$id = $_POST['id'];
+			$sql = "SELECT * FROM projects WHERE id='$id'";
+			$aRecord = DbConnection($sql);
+			$record = mysqli_fetch_object($aRecord);
 			$body .=<<<HTML
 <p>$errors</p>
 <form action='' method='POST'>
 <input type="hidden" name="set" value="Projects" />
-<input type="hidden" name="part" value="insert" />
+<input type="hidden" name="part" value="update" />
+<input type='hidden' name='id' value='$id' />
 <table border="0">
 <tr>
 <td>
 <lable for='name'>Name:</lable>
-<select name="nameO" id="name">
-<option value="$_POST[$record->uName]">$_POST[$record->uName]</option>
-$options
-</select>
+<input type="text" name="name" id="name" value="$record->uName" />
 </td>
 </tr>
 <tr>
@@ -76,7 +78,7 @@ HTML;
 <p>$errors</p>
 <form action='' method='POST'>
 <input type="hidden" name="set" value="Projects" />
-<input type="hidden" name="part" value="initInsert" />
+<input type="hidden" name="part" value="insert" />
 <table border="0">
 <tr>
 <td>
@@ -116,5 +118,33 @@ $options
 </form>
 HTML;
 		break;
+}
+
+
+foreach ($projects as $name => $list) {
+	# code...
+	$body .= "<details><summary>$name</summary>";
+	$body .=<<<HTML
+
+<table border=1>
+		<thead>
+		<tr>
+		<th>Project Name</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Action</th>
+		</tr>
+		<tbody>
+
+HTML;
+	foreach ($list as $item) {
+		# code...
+		$body .= $item;
+	}
+	$body .=<<<HTML
+	</tbody>
+	</table>
+	</details>
+HTML;
 }
 

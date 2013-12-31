@@ -1,11 +1,11 @@
 <?php
-$check = '';
+$check = 0;
 $error = array();
-
+$start = 0;
+$end = 0;
 if (isset($_POST['name']) && strlen($_POST['name']) > 2) {
 	# code...
 	$name = $_POST['name'];
-	echo "uName is set";
 	$check++;
 
 }elseif (isset($_POST['nameO']) && strlen($_POST['nameO']) > 2) {
@@ -37,5 +37,33 @@ if (isset($_POST['endDate'])) {
 	$end = $_POST['endDate'];
 
 }
+if ($check === 2 || $_POST['part'] == 'delete' || $_POST['part'] == 'complete') {
+	# code...
+	switch ($_POST['part']) {
+		case 'insert':
+			# code...
+			echo "insert";
+			$sql = "INSERT INTO projects (uName, pName, pStartDate, pEndDate, status) VALUES('$name', '$title', '$start', '$end', 'Active')";
+			$endResult = DbConnection($sql);
+			break;
+		
+		case 'update':
+			# code...
+			echo "UpDate";
+			$id = $_POST['id'];
+			$sql = "UPDATE projects SET uName='$name', pName='$title', pStartDate='$start', pEndDate='$end' WHERE id='$id";
+			break;
 
-
+		case 'delete':
+			#code...
+			echo "delete";
+			$sql = "DELETE FROM projects WHERE id=$id";
+			break;
+		case 'complete':
+			# code...
+			echo "complete";
+			$id = $_POST['id'];
+			$sql = "UPDATE projects SET status='Completed' WHERE id='$id";
+			break;
+	}
+}
