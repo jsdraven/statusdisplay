@@ -33,13 +33,25 @@ function DbConnection($query){
     $DB_Password = constant('mysql_Password');
     $DB_Host = constant('mysql_Host');
     $DB_Name = constant('mysql_DBName');
-    $copperrun = mysqli_connect($DB_Host, $DB_User, $DB_Password, $DB_Name);
-    $result = mysqli_query($copperrun, $query);
-    mysqli_close($copperrun);
+    $mysqli = mysqli_connect($DB_Host, $DB_User, $DB_Password, $DB_Name);
+    $result = mysqli_query($mysqli, $query);
+    mysqli_close($mysqli);
     return $result;
 
 }
 
+function DbConnectionC($query){
+
+    $DB_User = constant('mysql_UserName');
+    $DB_Password = constant('mysql_Password');
+    $DB_Host = constant('mysql_Host');
+    $DB_Name = constant('mysql_DBName');
+    $mysqli = new mysqli($DB_Host, $DB_User, $DB_Password, $DB_Name);
+    $result = $mysqli->query($query);
+    $mysqli->close($copperrun);
+    return $result;
+
+}
 //We will use this one to build list of feeds to cycle
 
 function FeedList(){

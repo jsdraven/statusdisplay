@@ -65,8 +65,9 @@ if ($check === 2 || $_POST['action'] == 'Delete' || $_POST['action'] == 'Complet
 				
 				case 'Complete':
 					# code...
+					$time = date('U');
 					echo "complete";
-					$sql = "UPDATE projects SET status='Completed' WHERE id='$id'";
+					$sql = "UPDATE projects SET status='Completed', completed=$time WHERE id='$id'";
 					break;
 			}
 			break;

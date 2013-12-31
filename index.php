@@ -9,8 +9,7 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
-require 'Modules/Projects/index.php';
-/*if (isset($_POST['reset'])) {
+if (isset($_POST['reset'])) {
     # code...
     session_destroy();
 }
@@ -65,5 +64,5 @@ $source = 'testFeed';
     </body>
 </html>
 <?php
-}*/
+}
 ?>

@@ -33,4 +33,5 @@ if (isset($_GET['feed'])) {
 	        require $path.'/index.php';
 	    }
 }
+//echo $pages;
 RotationTimer($list, $pages);
