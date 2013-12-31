@@ -37,33 +37,40 @@ if (isset($_POST['endDate'])) {
 	$end = $_POST['endDate'];
 
 }
-if ($check === 2 || $_POST['part'] == 'delete' || $_POST['part'] == 'complete') {
+if ($check === 2 || $_POST['action'] == 'Delete' || $_POST['action'] == 'Complete') {
 	# code...
 	switch ($_POST['part']) {
 		case 'insert':
 			# code...
 			echo "insert";
 			$sql = "INSERT INTO projects (uName, pName, pStartDate, pEndDate, status) VALUES('$name', '$title', '$start', '$end', 'Active')";
-			$endResult = DbConnection($sql);
 			break;
 		
 		case 'update':
 			# code...
 			echo "UpDate";
 			$id = $_POST['id'];
-			$sql = "UPDATE projects SET uName='$name', pName='$title', pStartDate='$start', pEndDate='$end' WHERE id='$id";
+			$sql = "UPDATE projects SET uName='$name', pName='$title', pStartDate='$start', pEndDate='$end' WHERE id='$id'";
 			break;
 
-		case 'delete':
+		case 'adjust':
 			#code...
-			echo "delete";
-			$sql = "DELETE FROM projects WHERE id=$id";
-			break;
-		case 'complete':
-			# code...
-			echo "complete";
 			$id = $_POST['id'];
-			$sql = "UPDATE projects SET status='Completed' WHERE id='$id";
+			switch ($_POST['action']) {
+				case 'Delete':
+					# code...
+					echo "delete";
+					$sql = "DELETE FROM projects WHERE id='$id'";
+					break;
+				
+				case 'Complete':
+					# code...
+					echo "complete";
+					$sql = "UPDATE projects SET status='Completed' WHERE id='$id'";
+					break;
+			}
 			break;
 	}
+	$endResult = DbConnection($sql);
+	var_dump($sql);
 }

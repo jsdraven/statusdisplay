@@ -7,6 +7,7 @@ $sql = "SELECT DISTINCT uName FROM projects WHERE status = 'Active'";
 $names = DbConnection($sql);
 
 $projects = array();
+$options = '';
 foreach ($names as $key => $value) {
 	# code...
 	$name = $value['uName'];
@@ -41,17 +42,19 @@ foreach ($names as $key => $value) {
 		&nbsp;
 		<input type="submit" name="action" value="Complete" />
 		</details>
+		</form>
 		</td>
 		</tr>
 FORM;
 
 	}
-	$options =<<<HTML
+	$options .=<<<HTML
 
 <option value="$name">$name</option>
 		
 
 HTML;
+
 }
 
 

@@ -19,9 +19,97 @@ switch ($part) {
 		switch ($_POST['action']) {
 			case 'Delete':
 				# code...
+			$body .=<<<HTML
+<p>$errors</p>
+<form action='' method='POST'>
+<input type="hidden" name="set" value="Projects" />
+<input type="hidden" name="part" value="insert" />
+<table border="0">
+<tr>
+<td>
+<lable for='name'>Name:</lable>
+<input type="text" name="name" id="name" />
+-- or --
+<select name="nameO" id="name">
+<option value=''>Select One.</option>
+$options
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<lable for="jobtitle">Job Title:</lable>
+<input type="text" name="jobtitle" id="jobtitle" />
+</td>
+</tr>
+<tr>
+<td>
+<lable for="startdate">Start Date</lable>  
+<input type="text" name="startDate" id="startDate" />
+</td>
+</tr>
+<tr>
+<td>
+<lable for="endDate">End Date</lable>
+<input type="text" name="endDate" id="endDate" />
+</td>
+</tr>
+<tr>
+<td>
+<input type="submit" id="submit" name="submit" value="Submit" />
+</td>
+</tr>
+</table>
+</form>
+HTML;
+		break;
 				break;
 			case 'Complete':
 				# code...
+			$body .=<<<HTML
+<p>$errors</p>
+<form action='' method='POST'>
+<input type="hidden" name="set" value="Projects" />
+<input type="hidden" name="part" value="insert" />
+<table border="0">
+<tr>
+<td>
+<lable for='name'>Name:</lable>
+<input type="text" name="name" id="name" />
+-- or --
+<select name="nameO" id="name">
+<option value=''>Select One.</option>
+$options
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<lable for="jobtitle">Job Title:</lable>
+<input type="text" name="jobtitle" id="jobtitle" />
+</td>
+</tr>
+<tr>
+<td>
+<lable for="startdate">Start Date</lable>  
+<input type="text" name="startDate" id="startDate" />
+</td>
+</tr>
+<tr>
+<td>
+<lable for="endDate">End Date</lable>
+<input type="text" name="endDate" id="endDate" />
+</td>
+</tr>
+<tr>
+<td>
+<input type="submit" id="submit" name="submit" value="Submit" />
+</td>
+</tr>
+</table>
+</form>
+HTML;
+		break;
 				break;
 			case 'Edit':
 				# code...
