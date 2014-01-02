@@ -21,9 +21,9 @@ while ($row = mysqli_fetch_object($listing)) {
 	$sample = $today - $row->completed;
 	if ($sample >= 259200 && $sample != $today) {
 		# code...
-		$sql = "DELETE * FROM projects WHERE id='$row->id'";
+		$sql = "DELETE FROM projects WHERE id='$row->id'";
 		//$endResult = DbConnection($sql);
-		var_dump($sql);
+		DbConnection($sql);
 	}else{
 		# code...
 		if ($row->status == "Complete") {

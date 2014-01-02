@@ -12,8 +12,8 @@ require_once 'protected/functions.php';
 
 $pageCycle = constant('pageCycleRate');
 $moduleCycle = constant('moduleCycleRate');
-print_r($_SESSION);
-echo "<br />";
+/*print_r($_SESSION);
+echo "<br />";*/
 
 $list = FeedList();
 $pages = NULL;

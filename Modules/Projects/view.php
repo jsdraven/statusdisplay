@@ -12,11 +12,9 @@ if (isset($completeList)) {
 		$lastID = $_SESSION['pageID'] -1;
 		$uNameList->data_seek($lastID);
 		$lastUname = $uNameList->fetch_row();
-var_dump($curentUname);
-var_dump($name);
-		if ($name == "Eric") {
+
+		if ($name == $curentUname[0] || $name == $lastUname[0]) {
 			# code...
-			echo "match";
 			$details = "<details open>";
 
 		}else{
