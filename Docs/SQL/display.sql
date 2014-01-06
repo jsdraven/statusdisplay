@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2013 at 07:07 PM
+-- Generation Time: Jan 03, 2014 at 12:57 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -25,18 +25,20 @@ USE `display`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs`
+-- Table structure for table `projects`
 --
 
-CREATE TABLE IF NOT EXISTS `jobs` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `name` varchar(12) NOT NULL,
-  `title` varchar(36) NOT NULL,
-  `startDate` varchar(10) NOT NULL,
-  `endDate` varchar(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `uName` varchar(30) NOT NULL,
+  `pName` varchar(45) NOT NULL,
+  `pStartDate` int(12) NOT NULL,
+  `pEndDate` int(12) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `completed` int(12) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

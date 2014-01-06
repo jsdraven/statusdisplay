@@ -11,9 +11,12 @@ session_start();
  */
 $basePath = 'Plugins/php-ews/';
 require_once('Protected/config.php');
+require_once($basePath.'EWSAutodiscover.php');
 require_once($basePath.'EWSType.php');
 require_once($basePath.'ExchangeWebServices.php');
 require_once($basePath.'EWS_Exception.php');
+require_once($basePath.'NTLMSoapClient.php');
+
 
 spl_autoload_register(
         function ($class) {

@@ -1773,7 +1773,7 @@
     </wsdl:binding>
     <wsdl:service name="ExchangeServices">
             <wsdl:port name="ExchangeServicePort" binding="tns:ExchangeServiceBinding">
-                <soap:address location="https://webmail.fosterdairyfarms.com/EWS/Exchange.asmx"/>
+                <soap:address location="https://192.168.0.36/EWS/Exchange.asmx"/>
             </wsdl:port>
         </wsdl:service>
 </wsdl:definitions>
