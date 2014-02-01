@@ -39,4 +39,6 @@ XML1;
   $result = $soapclient->call($operation, $xml);
   
   echo '<pre>'; var_dump($result); echo '</pre>';
+
+
 ?>
