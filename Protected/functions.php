@@ -1,8 +1,8 @@
 <?php
-session_start();
+//session_start();
 //testing session usage
 
-
+date_default_timezone_set('America/Los_Angeles');
 /**
  * Filename......: functions.php
  * Author........: Justin Scott
@@ -10,10 +10,55 @@ session_start();
  * Description...: This is all the functions used within this project.
  */
 $basePath = 'Plugins/php-ews/';
-require_once('Protected/config.php');
+$protectedPath = 'Protected/';
+$protectedDB = $protectedPath.'db/';
+require_once($protectedPath.'config.php');
 require_once($basePath.'EWSType.php');
 require_once($basePath.'ExchangeWebServices.php');
 require_once($basePath.'EWS_Exception.php');
+
+
+class MyDB extends SQLite3{
+    function __construct(){
+        $this->open('Protected/db/myDB.db');
+    }
+}
+
+
+/*
+if (!isset($db)) {
+    # code..
+    if (!file_exists($protectedDB.'myDB.db')) {
+        # code...
+        $db = new MyDB()
+        $sql =<<<EOF
+CREATE TABLE projects
+    (ID INT PRIMARY KEY NOT NULL,
+     tittle     text    NOT NULL,
+     group      text,
+     date       CHAR(50),
+     expEnd     CHAR(50));
+EOF;
+
+        $db->exec("CREAT TABLE projects ('id' init, 'title' varchar(255), 'disc' varchar(255), 'group' varchar(255))");
+        if (!$db) {
+            # code...
+            echo $db->lastErrorMsg();
+        }else{
+            echo "DB Connected\n";
+        }
+    }else{
+        $db = new MyDB();
+         if (!$db) {
+            # code...
+            echo $db->lastErrorMsg();
+        }else{
+            echo "DB Connected\n";
+        }       
+    }
+    
+}*/
+
 
 spl_autoload_register(
         function ($class) {
@@ -26,19 +71,7 @@ spl_autoload_register(
         }
 );
 
-//This is a one stop shop for SQL queries. 
-function DbConnection($query){
 
-    $DB_User = constant('mysql_UserName');
-    $DB_Password = constant('mysql_Password');
-    $DB_Host = constant('mysql_Host');
-    $DB_Name = constant('mysql_DBName');
-    $copperrun = mysqli_connect($DB_Host, $DB_User, $DB_Password, $DB_Name);
-    $result = mysqli_query($copperrun, $query);
-    mysqli_close($copperrun);
-    return $result;
-
-}
 
 //We will use this one to build list of feeds to cycle
 
@@ -118,10 +151,6 @@ function RotationTimer($feedList, $pages = NULL){
                         session_destroy();
                     }
             }
-
-
-
-
 
 
             break;

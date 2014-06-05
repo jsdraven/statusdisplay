@@ -9,20 +9,22 @@
  * also be checking for all modules.
  */
 require 'Protected/functions.php';
-require 'Modules/Exchange/index.php';
-/*if (isset($_POST['reset'])) {
+//require 'Modules/Exchange/index.php';
+if (isset($_POST['reset'])) {
     # code...
     session_destroy();
 }
 
 
-if (strlen(constant('displayIP')) > 0 && constant('displayIP') != $_SERVER['SERVER_ADDR']) {
+if (strlen(constant('displayIP')) > 0 && constant('displayIP') != $_SERVER['LOCAL_ADDR']) {
 
     $displayIP = constant('displayIP');
 
 }else{
 
-    $displayIP = $_SERVER['SERVER_ADDR'];
+    $displayIP = $_SERVER['LOCAL_ADDR'];
+
+    //var_dump($_SERVER);
 
 }
 if ($_SERVER['REMOTE_ADDR'] != $displayIP){
@@ -35,6 +37,7 @@ $source = 'testFeed';
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <script>
             function loadXMLDoc()
             {
@@ -65,5 +68,5 @@ $source = 'testFeed';
     </body>
 </html>
 <?php
-}*/
+}
 ?>
